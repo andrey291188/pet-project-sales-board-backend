@@ -3,11 +3,10 @@ const { HttpError } = require("../../helpers");
 
 const patchResetViewsAds = async (rq, rs) => {
   const { adsId } = rq.params;
-  const { views } = rq.body;
   
   const adsUpdate = await Ads.findByIdAndUpdate(
     adsId,
-    { views },
+    { views: 0 },
     { new: true }
   );
   if (!adsUpdate) {

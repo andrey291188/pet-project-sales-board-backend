@@ -4,13 +4,13 @@ const {ADMIN_PASSWORD} = process.env
 
 const activeAdmin = async (rq, rs) => {
     const {_id} = rq.user;
-    const { adminAccess, passwordAdmin } = rq.body
+    const { passwordAdmin } = rq.body
   
     if(passwordAdmin !== ADMIN_PASSWORD) {
         throw HttpError(401, "No access")
     }
     
-    await User.findByIdAndUpdate(_id, { adminAccess });
+    await User.findByIdAndUpdate(_id, { adminAccess: true });
   
     rs.json({
       status: "Success",

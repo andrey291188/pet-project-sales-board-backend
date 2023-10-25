@@ -3,7 +3,7 @@ const express = require("express")
 const {authCtrl: ctrl} = require("../../../controllers")
 
 const { validateBody, authenticate, upload } = require("../../../middlewares")
-const { userValidationSchema, emailVerifySchema, loginUserSchema, userAdminSchema } = require("../../../schemas");
+const { userValidationSchema, emailVerifySchema, loginUserSchema } = require("../../../schemas");
 
 const router = express.Router();
 
@@ -27,7 +27,7 @@ router.post("/logout", authenticate, ctrl.logoutUser);
 
 router.patch("/avatars", authenticate, upload.single("avatar"), ctrl.updateAvatar);
 
-router.patch("/admin", authenticate, validateBody(userAdminSchema), ctrl.activeAdmin)
+router.patch("/admin", authenticate, ctrl.activeAdmin)
 
 
 module.exports = router

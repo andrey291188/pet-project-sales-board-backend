@@ -6,7 +6,7 @@ const getCurrent = async (rq, rs) => {
     rs.json({
       status: "Success",
       code: 200,
-      user: {
+      data: {
         name,
         email,
       },

@@ -34,9 +34,10 @@ const loginUser = async (rq, rs) => {
         status: "Success",
         code: 200,
         token,
-        user: {
+        data: {
+            name: user.name,
             email: user.email,
-            subscription: user.subscription,
+            avatar: user.avatarURL
         }
     })
 }

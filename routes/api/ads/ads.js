@@ -3,7 +3,7 @@ const express = require("express");
 const {adsCtrl: ctrl} = require("../../../controllers")
 
 const { authenticate, validateBody, isValidId, upload } = require("../../../middlewares");
-const { adsValidationSchema, viewsSchema, activeAdsSchema } = require("../../../schemas");
+const { adsValidationSchema } = require("../../../schemas");
 
 const router = express.Router();
 
@@ -21,9 +21,9 @@ router.put("/:adsId", authenticate, isValidId, validateBody(adsValidationSchema)
 
 router.delete("/:adsId", authenticate, isValidId, ctrl.deletedAdsId);
 
-router.patch("/reset-views/:adsId", authenticate, isValidId, validateBody(viewsSchema), ctrl.patchResetViewsAds);
+router.patch("/reset-views/:adsId", authenticate, isValidId, ctrl.patchResetViewsAds);
 
-router.patch("/active/:adsId", authenticate, isValidId, validateBody(activeAdsSchema), ctrl.patchActiveAds);
+router.patch("/active/:adsId", authenticate, isValidId, ctrl.patchActiveAds);
 
 
 

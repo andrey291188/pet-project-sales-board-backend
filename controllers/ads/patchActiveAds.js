@@ -3,8 +3,9 @@ const { HttpError } = require("../../helpers");
 
 const patchActiveAds = async (rq, rs) => {
     const { adsId } = rq.params;
-    const { active } = rq.body
-    const adsUpdate = await Ads.findByIdAndUpdate(adsId, {active}, {new: true});
+    const { active: updateActive } = await Ads.findById(adsId)
+   
+    const adsUpdate = await Ads.findByIdAndUpdate(adsId, {active: !updateActive}, {new: true});
 
     if (!adsUpdate) {
       throw HttpError(404, "Not found");

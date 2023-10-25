@@ -34,7 +34,7 @@ const registerUser = async (rq, rs) => {
     rs.status(201).json({
         status: "Success",
         code: 200,
-        user: {
+        data: {
             name: newUser.name,
             email: newUser.email,
             avatarURL,
