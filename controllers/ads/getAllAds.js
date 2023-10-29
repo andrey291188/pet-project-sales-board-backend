@@ -8,11 +8,11 @@ const getAllAds = async (rq, rs) => {
 
   const adsList =
     favoriteQuery !== undefined
-      ? await Ads.find({ favorite: favoriteQuery }, "-createdAt -updateAt", {
+      ? await Ads.find({ favorite: favoriteQuery, active: true }, "-createdAt -updateAt", {
           skip,
           limit,
         })
-      : await Ads.find({}, "-createdAt -updateAt");
+      : await Ads.find({active: true}, "-createdAt -updateAt");
 
  
 

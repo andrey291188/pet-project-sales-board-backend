@@ -20,8 +20,9 @@ const adsDir = path.join(__dirname, "../../", "public", "adsFoto");
 const patchFotoAdsAdd = async (rq, rs) => {
   const { adsId } = rq.params;
   const {fotoAds} = await Ads.findById(adsId)
+ 
 
-  if (fotoAds.length) {
+  if ( fotoAds !== null ) {
     fotoAds.forEach(url => {
       deleteImage(url)
     });

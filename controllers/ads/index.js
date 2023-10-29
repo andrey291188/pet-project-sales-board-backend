@@ -9,6 +9,7 @@ const getAllAdsUser = require("./getAllAdsUser")
 const getAdsById = require("./getAdsById")
 const deletedAdsId = require("./deletedAdsId")
 const patchFotoAdsAdd = require("./patchFotoAdsAdd")
+const getAllAdsUserById = require("./getAllAdsUserById")
 
 module.exports = {
     putUpdateAdsId: ctrlWrapper(putUpdateAdsId),
@@ -20,4 +21,5 @@ module.exports = {
     deletedAdsId: ctrlWrapper(deletedAdsId),
     getAllAdsUser: ctrlWrapper(getAllAdsUser),
     patchFotoAdsAdd: ctrlWrapper(patchFotoAdsAdd),
+    getAllAdsUserById: ctrlWrapper(getAllAdsUserById)
 }

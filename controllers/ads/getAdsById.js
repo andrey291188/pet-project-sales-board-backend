@@ -3,7 +3,7 @@ const { HttpError } = require("../../helpers");
 
 const getAdsById = async (rq, rs) => {
     const { adsId } = rq.params;
-    const ads = await Ads.findById(adsId).populate("owner", "name email phone");
+    const ads = await Ads.findById(adsId).populate("owner", "name email phone avatarURL");
 
     if (!ads) {
       throw HttpError(404, "Not Found");

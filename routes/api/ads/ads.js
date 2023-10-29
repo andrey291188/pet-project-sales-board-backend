@@ -11,6 +11,8 @@ router.get("/", ctrl.getAllAds)
 
 router.get("/allForUser", authenticate, ctrl.getAllAdsUser)
 
+router.get("/allForUser/:userId", authenticate, ctrl.getAllAdsUserById)
+
 router.get("/:adsId", authenticate, isValidId, ctrl.getAdsById)
 
 router.post("/", authenticate, validateBody(adsValidationSchema), ctrl.postCreateAds);
