@@ -7,7 +7,7 @@ const getAllUsers = async (rq, rs) => {
         throw HttpError(403, "Forbidden")
     }
 
-    const userList = await User.find({})
+    const userList = await User.find({adminAccess: false}, "-adminAccess -password -token -verify -verificationToken -createdAt")
 
     rs.json({
         status: "Success",

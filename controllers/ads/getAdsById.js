@@ -11,8 +11,7 @@ const getAdsById = async (rq, rs) => {
     
     const currentViews = ads.views;
     const newViews = currentViews + 1;
-    ads.views = newViews;
-    await ads.save();
+    await Ads.findByIdAndUpdate(adsId, {views: newViews})
   
     rs.json({
       status: "Success",
