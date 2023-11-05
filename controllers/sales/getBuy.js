@@ -1,5 +1,4 @@
 const { Ads, Sales } = require("../../models");
-const { sendEmail } = require("../../service");
 
 const getBuy = async (rq, rs) => {
   const { adsId } = rq.params;
@@ -36,20 +35,6 @@ const getBuy = async (rq, rs) => {
   };
 
   const addTransaction = await Sales.create({ ...transaction });
-
-  const sellerMail = {
-    to: seller_email,
-    subject: "Congratulations on your order",
-    html: `<p>Congratulations, your ${title} has been purchased, contact the ${buyer_name} by writing a letter ${buyer_email} or calling him ${buyer_phone}</p>`,
-  };
-  const buyerMail = {
-    to: buyer_email,
-    subject: "Congratulations, you have successfully placed your order",
-    html: `<p>You have successfully ordered a ${title} from the seller's ${seller_name}, for a faster transaction you can call him ${seller_phone} or write ${seller_email}</p>`,
-  };
-
-  await sendEmail(sellerMail);
-  await sendEmail(buyerMail);
 
   rs.status(201).json({
     status: "Success",

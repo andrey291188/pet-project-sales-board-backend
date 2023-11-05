@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt")
 const gravatar = require("gravatar")
 const {nanoid} = require("nanoid")
 const {HttpError} = require("../../helpers")
-const {sendEmail} = require("../../service")
 require("dotenv").config();
 
 const {BASE_URL} = process.env;
@@ -23,13 +22,6 @@ const registerUser = async (rq, rs) => {
 
     const newUser = await User.create({...rq.body, password: hashPassword, avatarURL, verificationToken});
 
-    const verifyEmail = {
-        to: email,
-        subject: "Verify your email",
-        html: `<p>Congratulations, you have registered on our ad service, all you have to do is confirm your email</p> <a target="_blank" href="${BASE_URL}/api/users/verify/${verificationToken}">Click to verify email</a>`,
-    }
-
-    await sendEmail(verifyEmail)
 
     rs.status(201).json({
         status: "Success",
@@ -38,6 +30,7 @@ const registerUser = async (rq, rs) => {
             name: newUser.name,
             email: newUser.email,
             avatarURL,
+            confirm_email: `${BASE_URL}/api/users/verify/${verificationToken}`
         },
     })
 }
